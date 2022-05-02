@@ -1,0 +1,95 @@
+
+.form-book{
+    
+    text-align: center;
+    text-transform: uppercase;
+    margin: 3rem;
+    width: 50%;
+    padding-left: 50%;
+}
+.form-book, bg-success, input {
+ padding: .2em;
+ animation: ease-in-out; 
+ 
+}
+body {
+    background-color: #b6e2ce;
+    text-justify: distribute;
+    flex: auto;
+
+}
+
+.bg-success {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 24px;
+    color: beige;
+    font-style: inherit;
+    text-decoration: overline underline;
+}
+
+label{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    color: beige;
+    font-style: inherit italic;
+
+}
+
+
+footer{
+    text-align: center;
+    text-decoration: solid;
+}
+
+.menu {
+font-family:sans-serif;
+list-style:none;
+text-decoration:none;
+margin:0;
+padding:0;
+
+}
+ 
+.nav > li {
+float:left;
+}
+ 
+.nav li a {
+background:#0c9ba0;
+color:#FFF;
+display:block;
+border:1px solid;
+padding:10px 12px;
+align-items: flex-end;
+}
+ 
+.nav li a:hover {
+background:#0c9ba0;
+}
+.nav li ul {
+display:none;
+position:absolute;
+min-width:140px;
+}
+.nav li:hover > ul {
+display:block;
+}
+.nav li .flecha{
+font-size: 9px;
+padding-left: 6px;
+display: none;
+}
+.nav li a:not(:last-child) .flecha {
+display: inline;
+}
+
+.menu {
+    padding: 6px;
+    text-align: right;
+    alignment-adjust:auto;  
+    font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
