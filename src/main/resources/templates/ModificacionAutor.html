@@ -10,16 +10,17 @@
 </head>
 <body>
     <div class="bg-success p-2 text-white">
-        <h1>Añade un Autor </h1>
+        <h1>EDITA el Autor </h1>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="NavAutor">
         
-    <form class="form-book" action="/AdmAutores/Registrar" method="POST">
+    <form class="form-book" action="/AdmAutores/modificacionAutor" method="POST">
+        <input type="hidden" name="id" th:value="${id}">
         <div class="bg-success p-2 text-dark bg-opacity-50">
             <p th:if="${error != null}" th:text="${error}" style="color:red;"></p>
             <label>Ingrese autor:</label><br>
             <input type="text"  name="nombre" placeholder="Nombre del Autor" th:value="${nombre}" /> <br>    
-            <button type="submit" class="btn btn-primary">Registrar</button>    
+            <button type="submit" class="btn btn-primary">Actualizar el registrar</button>    
         </div>
     </form>
         <div class="bg-success p-2 text-dark bg-opacity-25">

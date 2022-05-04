@@ -15,8 +15,8 @@
     <form class="form-book" action="/AdmLibros/modificacionLibro" method="POST">
         <div class="bg-success p-2 text-dark bg-opacity-50"><br>
             <p th:if="${error != null}" th:text="${error}" style="color:red;"></p>
+            <input type="hidden" name="isbn" th:value="${isbn}">
             <label>Titulo del libro:</label><br>
-            <input type="hidden" th:field="*{isbn}">
             <input type="text" name="titulo" placeholder="Nombre del Libro" th:value="${titulo}"><br>
             <label>Año de edicion:</label><br>
             <input type="number" name="anio" placeholder="Año" th:value="${anio}"><br>
@@ -26,7 +26,7 @@
             <input type="text" name="editorial" placeholder="Nombre de la Editorial" th:value="${editorial}"><br>
             <label>Autor:</label><br>
             <input type="text" name="autor" placeholder="Nombre del Autor" th:value="${autor}"><br>
-            <button class="btn btn-primary" type="submit">Registrar</button><br>
+            <button class="btn btn-primary" type="submit">Actualizar el registrar</button><br>
             
         </div>
         </form>

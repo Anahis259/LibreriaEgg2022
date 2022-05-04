@@ -15,13 +15,12 @@ public class Libro implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid",strategy = "uuid2")
-    /*@GeneratedValue(strategy=GenerationType.AUTO)*/
     private String isbn;
     private String titulo;
     private Integer anio; 
     private Integer ejemplares, ejemplaresPrestados, ejemplaresRestantes;  
     private boolean Alta; 
-    
+    /*@GeneratedValue(strategy=GenerationType.AUTO)*/
     @ManyToOne
     private Editorial editorial; 
    

@@ -17,7 +17,7 @@ public class LibroServicio {
     
     @Transactional
     public void registrar(String nombre, Integer anio, Integer TotalEjemplares, Editorial editorial, Autor autor, boolean alta) throws ErrorLibreriaServicio{
-        validar(nombre, anio, TotalEjemplares, editorial, autor);
+         validar(nombre, anio, TotalEjemplares, editorial, autor);
         Libro libro = new Libro(); 
         libro.setTitulo(nombre);
         libro.setAnio(anio);
@@ -29,15 +29,11 @@ public class LibroServicio {
         
     }
       @Transactional
-    public void mofificar(String nombre, Integer anio, Integer ejemplares, Editorial editorial, Autor autor, boolean alta) throws ErrorLibreriaServicio{
-        /*validar(nombre, Integer.SIZE, Integer.MAX_VALUE, editorial, autor);*/
+    public void mofificar(String isbn, String nombre, Integer anio, Integer ejemplares, Editorial editorial, Autor autor, boolean alta) throws ErrorLibreriaServicio{
         validar(nombre, anio, ejemplares, editorial, autor);
-        Optional<Libro> respuesta = libroRepositorio.findById(nombre);
-        
+        Optional<Libro> respuesta = libroRepositorio.findById(isbn);
         if(respuesta.isPresent()){
             Libro libro = respuesta.get(); 
-            if(libro.getTitulo().toUpperCase().equals(nombre)){
-                
                 libro.setTitulo(nombre);
                 libro.setAnio(anio);
                 libro.setEditorial(editorial);
@@ -45,9 +41,6 @@ public class LibroServicio {
                 libro.setEjemplares(ejemplares);
                 libro.setAlta(Boolean.TRUE);
                 libroRepositorio.save(libro);
-            }else{
-                throw new ErrorLibreriaServicio("No coincide con un id registrado");
-            }
         }else{
             throw new ErrorLibreriaServicio("No se encuentra el id solicitado");
         }

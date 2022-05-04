@@ -70,7 +70,7 @@ public class LibroControlador {
     public String editar(@PathVariable("isbn") String isbn, ModelMap modelo,RedirectAttributes ra){
         Libro libro = libroServicio.buscarPorIsbn(isbn);
         List<Libro> Libros =  libroServicio.listar();
-        modelo.addAttribute("isbn", isbn);
+        
         modelo.addAttribute("libro", libro);
         modelo.addAttribute("titulo", libro.getTitulo());
         modelo.addAttribute("anio", libro.getAnio());
@@ -87,49 +87,29 @@ public class LibroControlador {
         Autor autor1 = autorServicio.buscarPorNombre(autor);
         Libro libro = libroServicio.buscarPorIsbn(isbn);
         try{
-            libroServicio.mofificar(titulo, anio, ejemplares, editorial1, autor1, true);
+            libroServicio.mofificar(isbn,titulo, anio, ejemplares, editorial1, autor1, true);
     }catch (ErrorLibreriaServicio ex){
         modelo.put("libro", libro);
-        modelo.addAttribute("isbn", isbn);
+        
         modelo.addAttribute("error", ex.getMessage());
         return "redirect:/editarLibro/{isbn}";
     }
         modelo.put("titulo", "LIBRO MODIFICADO CON EXITO.");
         modelo.put("descripcion", "BIEN HECHO.");
-        return "index";
+        return "exito";
     }
     
-    /*@GetMapping("/libro{isbn}")
-    public String editarLibro(@PathVariable("isbn") String isbn,RedirectAttributes ra, ModelMap modelo){
-        Libro libro = libroServicio.buscarPorIsbn(isbn);
-        modelo.put("isbn", libro.getIsbn());
-        modelo.put("titulo", libro.getTitulo());
-        modelo.put("anio", libro.getAnio());
-        modelo.put("autores", autorServicio.listar());
-        modelo.put("editoriales", editorialServicio.listar());
-        modelo.put("ejemplares", libro.getEjemplares());
-        modelo.put("Alta", libro.isAlta());
-        return "/consultaLibro";
-     }
-    
-    
-    
-    */
-    
-    @GetMapping("/baja/Libro{isbn}")
+        @GetMapping("/baja/Libro{isbn}")
     public String bajaEditorial(ModelMap modelo,@PathVariable("isbn") String isbn){
         try{
             libroServicio.deshabilitar(isbn);
-        
         }catch (ErrorLibreriaServicio ex){
             modelo.put("error", ex.getMessage());
             return "ConsultaLibro";
-        
         }
         modelo.put("titulo", "LIBRO DESHABILITADO CON EXITO.");
         modelo.put("descripcion", "BIEN HECHO.");
-        return "exito";
-            
+        return "exito";       
 }    
     @GetMapping("/alta/Libro{isbn}")
     public String altaEditorial(ModelMap modelo,@PathVariable("isbn") String isbn){
@@ -138,13 +118,11 @@ public class LibroControlador {
         
         }catch (ErrorLibreriaServicio ex){
             modelo.put("error", ex.getMessage());
-            return "ConsultaLibro";
-        
+            return "ConsultaLibro";  
         }
         modelo.put("titulo", "LIBRO HABILITADO CON EXITO.");
         modelo.put("descripcion", "BIEN HECHO.");
         return "exito";
-            
 }    
  @RequestMapping("/accessdenied")
         public ModelAndView accessdenied() {

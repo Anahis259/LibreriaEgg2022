@@ -22,20 +22,15 @@ public class EditorialServicio {
         editorialRepositorio.save(editorial);
     } 
       @Transactional
-    public void modificar(String nombre, String idEditorial) throws ErrorLibreriaServicio{
+    public void modificar(String id,String nombre) throws ErrorLibreriaServicio{
         validar(nombre);
-        Optional<Editorial> respuesta = editorialRepositorio.findById(nombre);
-        
+        Optional<Editorial> respuesta = editorialRepositorio.findById(id);
         if (respuesta.isPresent()){
             Editorial editorial = respuesta.get();
-            if (editorial.getNombre().toUpperCase().equals(nombre)){
                 editorial.setNombre(nombre);
                 editorialRepositorio.save(editorial);
             }else{
                 throw new ErrorLibreriaServicio("No coincide con un id registrado");
-            }
-        }else{
-            throw new ErrorLibreriaServicio("No se encuentra el id solicitado");
         }
              
     }

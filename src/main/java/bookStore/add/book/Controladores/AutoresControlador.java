@@ -49,7 +49,7 @@ public class AutoresControlador {
         return "exito";
     }
     @GetMapping("/consultaAutor")
-    public String consultaAutor(ModelMap modelo){
+    public String consultaAutor (ModelMap modelo){
         List<Autor> Autores =  autorServicio.listar();
         modelo.addAttribute("Autores", Autores);
         return "ListaAutor.html";   
@@ -83,7 +83,31 @@ public class AutoresControlador {
         modelo.put("descripcion", "Bien hecho!");
         return "exito";
     }
+@GetMapping("/editarAutor/{id}")
+    public String editar(@PathVariable("id") String id, ModelMap modelo){
+        Autor autor = autorServicio.buscarAutorPorId(id);
+        modelo.addAttribute("autor", autor);
+        modelo.addAttribute("nombre", autor.getNombre());
+        
+        return "ModificacionAutor.html";
     
+    }
+    @PostMapping("/modificacionAutor")
+    public String modificaAutor(ModelMap modelo,@RequestParam(required = false) String id, @RequestParam(required = false) String nombre ) throws ErrorLibreriaServicio{
+        
+        Autor autor = autorServicio.buscarAutorPorId(id);
+        try{
+            autorServicio.modificar(id, nombre);
+    }catch (ErrorLibreriaServicio ex){
+        modelo.put("autor", autor);
+        
+        modelo.addAttribute("error", ex.getMessage());
+        return "redirect:/editarAutor/{id}";
+    }
+        modelo.put("titulo", "Autor MODIFICADO CON EXITO.");
+        modelo.put("descripcion", "BIEN HECHO.");
+        return "exito";
+    }    
     
      
     

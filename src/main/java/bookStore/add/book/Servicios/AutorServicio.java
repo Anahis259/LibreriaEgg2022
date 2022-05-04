@@ -25,18 +25,14 @@ public class AutorServicio{
             
     
     @Transactional
-    public void modificar(String nombre, String idLibro) throws ErrorLibreriaServicio{
+    public void modificar(String id, String nombre) throws ErrorLibreriaServicio{
         validar(nombre);
-        Optional<Autor> respuesta = autorRepositorio.findById(nombre);
+        Optional<Autor> respuesta = autorRepositorio.findById(id);
         
         if (respuesta.isPresent()){
             Autor autor = respuesta.get();
-            if (autor.getNombre().toUpperCase().equals(nombre)){
                 autor.setNombre(nombre);
                 autorRepositorio.save(autor);
-            }else{
-                throw new ErrorLibreriaServicio("No coincide con un id registrado");
-            }
         }else{
             throw new ErrorLibreriaServicio("No se encuentra el id solicitado");
         }
@@ -56,7 +52,6 @@ public class AutorServicio{
     }
     public void habilitar(String id) throws ErrorLibreriaServicio{
         Optional<Autor> respuesta = autorRepositorio.findById(id);
-        
         if (respuesta.isPresent()){
             Autor autor = autorRepositorio.findById(id).get();
                 autor.setAlta(Boolean.TRUE);
@@ -64,7 +59,6 @@ public class AutorServicio{
             }else{
                 throw new ErrorLibreriaServicio("No se encuentra el id solicitado para eliminar");
             }
-            
         }
           
     

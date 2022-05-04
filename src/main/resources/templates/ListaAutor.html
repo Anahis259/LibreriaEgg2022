@@ -27,7 +27,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Alta</th>
                             <th scope="col">Estado</th>
-                            
+                            <th scope="col">Editar</th>
                             <!--<th scope="col">Baja</th>-->   
                         </tr>
                     </thead>
@@ -38,7 +38,7 @@
                             <td><span th:text="${autor.Alta}">Alta</span></td>
                             <td><span th:if="${autor.Alta ==FALSE}"><a class="btn btn-primary" th:href="@{/AdmAutores/alta/Autor{id} (id=${autor.id})}" role="button">HABILITAR</a></span></td>
                             <td><span th:if="${autor.Alta}"><a class="btn btn-danger" th:href="@{/AdmAutores/Autor{id} (id=${autor.id})}" role="button">DESHABILITAR</a></span></td>
-                            
+                            <td><span><a class="btn btn-primary" th:href="@{/AdmAutores/editarAutor/{id} (id=${autor.id})}" role="button">EDITAR</a></span></td>
                             <!--<td><span th:text="${autor.baja}">Baja</span></td>-->
                         </tr>
                 
